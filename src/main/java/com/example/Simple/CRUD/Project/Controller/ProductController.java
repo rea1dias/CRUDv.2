@@ -1,6 +1,7 @@
 package com.example.Simple.CRUD.Project.Controller;
 
 import com.example.Simple.CRUD.Project.Model.Product;
+import com.example.Simple.CRUD.Project.Model.ProductDto;
 import com.example.Simple.CRUD.Project.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -25,6 +26,15 @@ public class ProductController {
         return "products/index";
 
     }
+
+    @GetMapping("/create")
+    public String showCreatePage(Model model) {
+        ProductDto productDto = new ProductDto();
+        model.addAttribute("productDto", productDto);
+        return "products/add_product";
+    }
+
+
 
 
 

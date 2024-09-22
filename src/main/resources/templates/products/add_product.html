@@ -4,23 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD App</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/add_product.css">
 </head>
 <body>
 <div class="container">
     <h1>CRUD</h1>
-    <form id="productForm" action="/products" method="POST">
-        <input type="text" id="name" placeholder="Product Name" required />
-        <input type="number" id="price" placeholder="Product Price" required />
-        <input type="text" id="brand" placeholder="Brand" required />
-        <textarea id="description" placeholder="Description" required></textarea>
-        <select id="category" required>
+    <form id="productForm" enctype="multipart/form-data" th:object="${productDto}" method="POST">
+        <input type="text" th:field="${productDto.name}" id="name" placeholder="Product Name" required />
+        <input type="number" th:field="${productDto.price}" step="0.01" min="0" id="price" placeholder="Product Price" required />
+        <input type="text" th:field="${productDto.brand}" id="brand" placeholder="Brand" required />
+        <textarea id="description" th:field="${productDto.description}" placeholder="Description" required></textarea>
+        <select id="category" th:field="${productDto.category}" required>
             <option value="">Select Category</option>
             <option value="Electronics">Electronics</option>
             <option value="Clothing">Clothing</option>
             <option value="Home Appliances">Home Appliances</option>
         </select>
-        <input type="file" id="image" accept="image/*" required />
+        <input type="file" th:field="${productDto.imageFile}" id="image" accept="image/*" required />
         <button type="submit">Add Product</button>
     </form>
     <ul id="productList"></ul>
