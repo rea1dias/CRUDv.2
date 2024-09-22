@@ -1,12 +1,12 @@
 package com.example.Simple.CRUD.Project.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
+import java.util.Date;
+
 @Entity
+@Table(name = "product")
 public class Product {
 
     @Id
@@ -14,13 +14,27 @@ public class Product {
     private long id;
 
     private String name;
+    private String brand;
+    private String category;
 
     private double price;
 
-    public Product(long id, String name, double price) {
+    @Column(columnDefinition = "TEXT")
+    private String description;
+    private Date createdAt;
+    private String imageFileName;
+
+    public Product() {}
+
+    public Product(long id, String name, String brand, double price, String imageFileName, Date createdAt, String description, String category) {
         this.id = id;
         this.name = name;
+        this.brand = brand;
         this.price = price;
+        this.imageFileName = imageFileName;
+        this.createdAt = createdAt;
+        this.description = description;
+        this.category = category;
     }
 
     public long getId() {
@@ -39,11 +53,51 @@ public class Product {
         this.name = name;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
     public double getPrice() {
         return price;
     }
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getImageFileName() {
+        return imageFileName;
+    }
+
+    public void setImageFileName(String imageFileName) {
+        this.imageFileName = imageFileName;
     }
 }

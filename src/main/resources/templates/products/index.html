@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD App</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Product List</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Time</th>
+            <th>Action</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody id="productList">
+        <tr th:each="product : ${products}">
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.brand}"></td>
+            <td th:text="${product.category}"></td>
+            <td th:text="@{${product.price} + '$'}"></td>
+            <td>
+                <img th:src="@{'/images/' + ${product.imageFileName}}" alt="..." style="width: 50px;">
+            </td>
+            <td th:text="${#dates.format(product.createdAt, 'yyyy-MM-dd HH:mm')}"></td>
+
+            <td>
+                <form action="@{/products/edit(id=${product.id})}" method="GET" style="display:inline;">
+                    <button class="btn btn-edit" type="submit">Edit</button>
+                </form>
+                <form action="@{/products/delete(id=${product.id})}" method="POST" style="display:inline;">
+                    <button class="btn btn-delete" type="submit">Delete</button>
+                </form>
+            </td>
+
+            <td th:text="${product.description}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

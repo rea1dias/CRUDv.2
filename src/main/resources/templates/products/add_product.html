@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD App</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div class="container">
+    <h1>CRUD</h1>
+    <form id="productForm" action="/products" method="POST">
+        <input type="text" id="name" placeholder="Product Name" required />
+        <input type="number" id="price" placeholder="Product Price" required />
+        <input type="text" id="brand" placeholder="Brand" required />
+        <textarea id="description" placeholder="Description" required></textarea>
+        <select id="category" required>
+            <option value="">Select Category</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Home Appliances">Home Appliances</option>
+        </select>
+        <input type="file" id="image" accept="image/*" required />
+        <button type="submit">Add Product</button>
+    </form>
+    <ul id="productList"></ul>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
